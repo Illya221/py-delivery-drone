@@ -54,8 +54,10 @@ class DeliveryDrone(FlyingRobot):
     ) -> None:
         super().__init__(name, weight, coords)
         self.max_load_weight = max_load_weight
+
+        # Only attempt to hook cargo if it's provided
         self.current_load: Optional[Cargo] = None
-        if isinstance(current_load, Cargo):
+        if current_load:
             self.hook_load(current_load)
 
     def hook_load(self, cargo: Cargo) -> None:
